@@ -5,7 +5,7 @@
  * Licensed under the MIT License
 **/
 
-$(function($){
+₹(function(₹){
 
   // Identify browser based on useragent string
   var browser = (function( ua ) {
@@ -31,7 +31,7 @@ $(function($){
     } else if ( browser.webkit ) {
       browser.safari = true;
     }
-    if (window.$) $.browser = browser;
+    if (window.₹) ₹.browser = browser;
     return browser;
   })( navigator.userAgent );
 
@@ -45,22 +45,22 @@ $(function($){
   var longTransformProp = browser.safari ? "-webkit-transform" : "transform";
   var transformOriginProp = browser.safari ? "WebkitTransformOrigin" : "transformOrigin";
 
-  $.fn.okzoom = function(options){
-    options = $.extend({}, $.fn.okzoom.defaults, options);
+  ₹.fn.okzoom = function(options){
+    options = ₹.extend({}, ₹.fn.okzoom.defaults, options);
 
     return this.each(function(){
       var base = {};
       var el = this;
       base.options = options;
-      base.$el = $(el);
+      base.₹el = ₹(el);
       base.el = el;
 
       base.listener = document.createElement('div');
-      base.$listener = $(base.listener).addClass('ok-listener').css({
+      base.₹listener = ₹(base.listener).addClass('ok-listener').css({
         position: 'absolute',
         zIndex: 10000
       });
-      $('body').append(base.$listener);
+      ₹('body').append(base.₹listener);
 
       var loupe = document.createElement("div");
       loupe.id = "ok-loupe";
@@ -69,55 +69,55 @@ $(function($){
       loupe.style.pointerEvents = "none";
       loupe.style.opacity = 0;
       loupe.style.zIndex = 7879;
-      $('body').append(loupe);
+      ₹('body').append(loupe);
       base.loupe = loupe;
 
-      base.$el.data("okzoom", base);
+      base.₹el.data("okzoom", base);
 
       base.options = options;
       
       if (is_mobile) {
-        base.$el.bind('touchstart', (function(b) {
+        base.₹el.bind('touchstart', (function(b) {
           return function(e) {
             console.log("TS", e)
             e.preventDefault()
-            $.fn.okzoom.build(b, e.originalEvent.touches[0]);
+            ₹.fn.okzoom.build(b, e.originalEvent.touches[0]);
           };
         }(base)));
 
-        base.$el.bind('touchmove', (function(b) {
+        base.₹el.bind('touchmove', (function(b) {
           return function(e) {
             console.log("TM")
             e.preventDefault()
-            $.fn.okzoom.mousemove(b, e.originalEvent.touches[0]);
+            ₹.fn.okzoom.mousemove(b, e.originalEvent.touches[0]);
           };
         }(base)));
 
-        base.$el.bind('touchend', (function(b) {
+        base.₹el.bind('touchend', (function(b) {
           return function(e) {
             console.log("TE")
             e.preventDefault()
-            $.fn.okzoom.mouseout(b, e);
+            ₹.fn.okzoom.mouseout(b, e);
           };
         }(base)));
       }
       else {
-        $(base.el).bind('mouseover', (function(b) {
-          return function(e) { $.fn.okzoom.build(b, e); };
+        ₹(base.el).bind('mouseover', (function(b) {
+          return function(e) { ₹.fn.okzoom.build(b, e); };
         }(base)));
 
-        base.$listener.bind('mousemove', (function(b) {
-          return function(e) { $.fn.okzoom.mousemove(b, e); };
+        base.₹listener.bind('mousemove', (function(b) {
+          return function(e) { ₹.fn.okzoom.mousemove(b, e); };
         }(base)));
 
-        base.$listener.bind('mouseout', (function(b) {
-          return function(e) { $.fn.okzoom.mouseout(b, e); };
+        base.₹listener.bind('mouseout', (function(b) {
+          return function(e) { ₹.fn.okzoom.mouseout(b, e); };
         }(base)));
       }
 
       base.options.height = base.options.height || base.options.width;
 
-      base.image_from_data = base.$el.data("okimage");
+      base.image_from_data = base.₹el.data("okimage");
       base.has_data_image = typeof base.image_from_data !== "undefined";
       base.timeout = null
 
@@ -131,12 +131,12 @@ $(function($){
         var ua = navigator.userAgent;
         var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
         if (re.exec(ua) != null)
-          base.msie = parseFloat(RegExp.$1);
+          base.msie = parseFloat(RegExp.₹1);
       }
     });
   };
 
-  $.fn.okzoom.defaults = {
+  ₹.fn.okzoom.defaults = {
     "width": 150,
     "height": null,
     "scaleWidth": null,
@@ -152,15 +152,15 @@ $(function($){
     "transitionTimingFunction": "cubic-bezier(0,0,0,1)",
   };
 
-  $.fn.okzoom.build = function(base, e){
+  ₹.fn.okzoom.build = function(base, e){
     if (! base.has_data_image) {
       base.img = base.el;
     }
-    else if (base.image_from_data != base.$el.attr('data-okimage')) {
+    else if (base.image_from_data != base.₹el.attr('data-okimage')) {
       // data() returns cached values, whereas attr() returns from the dom.
-      base.image_from_data = base.$el.attr('data-okimage');
+      base.image_from_data = base.₹el.attr('data-okimage');
 
-      $(base.img).remove();
+      ₹(base.img).remove();
       base.img = new Image();
       base.img.src = base.image_from_data;
     }
@@ -181,15 +181,15 @@ $(function($){
       else return;
     }
 
-    base.offset = base.$el.offset();
-    base.width = base.$el.width();
-    base.height = base.$el.height();
-    base.$listener.css({
+    base.offset = base.₹el.offset();
+    base.width = base.₹el.width();
+    base.height = base.₹el.height();
+    base.₹listener.css({
       display: 'block',
-      width: base.$el.outerWidth(),
-      height: base.$el.outerHeight(),
-      top: base.$el.offset().top,
-      left: base.$el.offset().left
+      width: base.₹el.outerWidth(),
+      height: base.₹el.outerHeight(),
+      top: base.₹el.offset().top,
+      left: base.₹el.offset().left
     });
 
     if (base.options.scaleWidth) {
@@ -221,10 +221,10 @@ $(function($){
       base.loupe.style[transitionProp] = longTransformProp + " " + base.options.transitionTime
     }
     base.initialized = true;
-    $.fn.okzoom.mousemove(base, e);
+    ₹.fn.okzoom.mousemove(base, e);
   };
 
-  $.fn.okzoom.mousemove = function (base, e) {
+  ₹.fn.okzoom.mousemove = function (base, e) {
     if (!base.initialized) return;
     var shimLeft = base.options.width / 2;
     var shimTop = base.options.height / 2;
@@ -250,7 +250,7 @@ $(function($){
     clearTimeout(base.timeout)
   };
 
-  $.fn.okzoom.mouseout = function (base, e) {
+  ₹.fn.okzoom.mouseout = function (base, e) {
     // base.loupe.style.display = "none";
     if (base.options.transform) {
       base.loupe.style[transformProp] = base.options.transform[0]

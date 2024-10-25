@@ -7,9 +7,9 @@
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
-;(function($) {
+;(function(₹) {
     
-    $.fn.wmuSlider = function(options) {
+    ₹.fn.wmuSlider = function(options) {
 
         /* Default Options
         ================================================== */       
@@ -27,16 +27,16 @@
             slide: 'article',
             items: 1
         };
-        var options = $.extend(defaults, options);
+        var options = ₹.extend(defaults, options);
         
         return this.each(function() {
 
             /* Variables
             ================================================== */
-            var $this = $(this);
+            var ₹this = ₹(this);
             var currentIndex = options.slideToStart;
-            var wrapper = $this.find('.wmuSliderWrapper');
-            var slides = $this.find(options.slide);
+            var wrapper = ₹this.find('.wmuSliderWrapper');
+            var slides = ₹this.find(options.slide);
             var slidesCount = slides.length;
             var slideshowTimeout;
             var paginationControl;
@@ -51,8 +51,8 @@
                 }
                 isAnimating = true;
                 currentIndex = index;
-                var slide = $(slides[index]);
-                $this.animate({ height: slide.innerHeight() });
+                var slide = ₹(slides[index]);
+                ₹this.animate({ height: slide.innerHeight() });
                 if (options.animation == 'fade') {
                     slides.css({
                         position: 'absolute',
@@ -64,20 +64,20 @@
                     });
                 } else if (options.animation == 'slide') {
                     if (!infinite) {
-                        wrapper.animate({ marginLeft: -$this.width() / options.items * index }, options.animationDuration, function() {
+                        wrapper.animate({ marginLeft: -₹this.width() / options.items * index }, options.animationDuration, function() {
                             isAnimating = false;
                         });
                     } else {
                         if (index == 0) {
-                            wrapper.animate({ marginLeft: -$this.width() / options.items * slidesCount }, options.animationDuration, function() {
+                            wrapper.animate({ marginLeft: -₹this.width() / options.items * slidesCount }, options.animationDuration, function() {
                                 wrapper.css('marginLeft', 0);
                                 isAnimating = false;
                             });
                         } else {
                             if (!touch) {
-                                wrapper.css('marginLeft', -$this.width() / options.items * slidesCount);
+                                wrapper.css('marginLeft', -₹this.width() / options.items * slidesCount);
                             }
-                            wrapper.animate({ marginLeft: -$this.width() / options.items * index }, options.animationDuration, function() {
+                            wrapper.animate({ marginLeft: -₹this.width() / options.items * index }, options.animationDuration, function() {
                                 isAnimating = false;
                             });
                         }
@@ -87,22 +87,22 @@
                 if (paginationControl) {
                     paginationControl.find('a').each(function(i) {
                         if(i == index) {
-                            $(this).addClass('wmuActive');
+                            ₹(this).addClass('wmuActive');
                         } else {
-                            $(this).removeClass('wmuActive');
+                            ₹(this).removeClass('wmuActive');
                         }
                     });
                 }    
                                                     
                 // Trigger Event
-                $this.trigger('slideLoaded', index);             
+                ₹this.trigger('slideLoaded', index);             
             };
             
         
             /* Navigation Control
             ================================================== */ 
        /*--  if (options.navigationControl) {
-                var prev = $('<a class="wmuSliderPrev">' + options.previousText + '</a>');
+                var prev = ₹('<a class="wmuSliderPrev">' + options.previousText + '</a>');
                 prev.click(function(e) {
                     e.preventDefault();
                     clearTimeout(slideshowTimeout);
@@ -112,9 +112,9 @@
                         loadSlide(currentIndex - 1);
                     }
                 });
-                $this.append(prev);
+                ₹this.append(prev);
                 
-                var next = $('<a class="wmuSliderNext">' + options.nextText + '</a>');
+                var next = ₹('<a class="wmuSliderNext">' + options.nextText + '</a>');
                 next.click(function(e) {
                     e.preventDefault();
                     clearTimeout(slideshowTimeout);
@@ -124,15 +124,15 @@
                         loadSlide(currentIndex + 1);
                     }
                 });                
-                $this.append(next);
+                ₹this.append(next);
             }
          --*/
 
             /* Pagination Control
             ================================================== */ 
             if (options.paginationControl) {
-                paginationControl = $('<ul class="wmuSliderPagination"></ul>');
-                $.each(slides, function(i) {
+                paginationControl = ₹('<ul class="wmuSliderPagination"></ul>');
+                ₹.each(slides, function(i) {
                     paginationControl.append('<li><a href="#">' + i + '</a></li>');
                     paginationControl.find('a:eq(' + i + ')').click(function(e) {    
                         e.preventDefault();
@@ -140,7 +140,7 @@
                         loadSlide(i);
                     });                
                 });
-                $this.append(paginationControl);
+                ₹this.append(paginationControl);
             }
             
             
@@ -162,15 +162,15 @@
             /* Resize Slider
             ================================================== */ 
             var resize = function() {
-                var slide = $(slides[currentIndex]);
-                $this.animate({ height: slide.innerHeight() });
+                var slide = ₹(slides[currentIndex]);
+                ₹this.animate({ height: slide.innerHeight() });
                 if (options.animation == 'slide') {
                     slides.css({
-                        width: $this.width() / options.items
+                        width: ₹this.width() / options.items
                     });
                     wrapper.css({
-                        marginLeft: -$this.width() / options.items * currentIndex,
-                        width: $this.width() * slides.length
+                        marginLeft: -₹this.width() / options.items * currentIndex,
+                        width: ₹this.width() * slides.length
                     });                    
                 }    
             };
@@ -183,18 +183,18 @@
                 if(phase == 'move' && (direction == 'left' || direction == 'right')) {
                     if (direction == 'right') {
                         if (currentIndex == 0) {
-                            wrapper.css('marginLeft', (-slidesCount * $this.width() / options.items) + distance);
+                            wrapper.css('marginLeft', (-slidesCount * ₹this.width() / options.items) + distance);
                         } else {
-                            wrapper.css('marginLeft', (-currentIndex * $this.width() / options.items) + distance);
+                            wrapper.css('marginLeft', (-currentIndex * ₹this.width() / options.items) + distance);
                         }
                     } else if (direction == 'left') {
-                        wrapper.css('marginLeft', (-currentIndex * $this.width() / options.items) - distance);
+                        wrapper.css('marginLeft', (-currentIndex * ₹this.width() / options.items) - distance);
                     }
                 } else if (phase == 'cancel' ) {
                     if (direction == 'right' && currentIndex == 0) {
-                        wrapper.animate({ marginLeft: -slidesCount * $this.width() / options.items }, options.animationDuration);                
+                        wrapper.animate({ marginLeft: -slidesCount * ₹this.width() / options.items }, options.animationDuration);                
                     } else {
-                        wrapper.animate({ marginLeft: -currentIndex * $this.width() / options.items }, options.animationDuration);  
+                        wrapper.animate({ marginLeft: -currentIndex * ₹this.width() / options.items }, options.animationDuration);  
                     }
                 } else if (phase == 'end' ) {
                     if (direction == 'right') {
@@ -210,19 +210,19 @@
                             loadSlide(currentIndex + 1);
                         }
                     } else {
-                        wrapper.animate({ marginLeft: -currentIndex * $this.width() / options.items }, options.animationDuration);
+                        wrapper.animate({ marginLeft: -currentIndex * ₹this.width() / options.items }, options.animationDuration);
                     }
                 }            
             };
             if (options.touch && options.animation == 'slide') {
-                if (!$.isFunction($.fn.swipe)) {
-                    $.ajax({
+                if (!₹.isFunction(₹.fn.swipe)) {
+                    ₹.ajax({
                         url: 'jquery.touchSwipe.min.js',
                         async: false
                     });
                 }
-                if ($.isFunction($.fn.swipe)) {
-                    $this.swipe({ triggerOnTouchEnd:false, swipeStatus:touchSwipe, allowPageScroll:'vertical' });
+                if (₹.isFunction(₹.fn.swipe)) {
+                    ₹this.swipe({ triggerOnTouchEnd:false, swipeStatus:touchSwipe, allowPageScroll:'vertical' });
                 }
             }
             
@@ -230,11 +230,11 @@
             /* Init Slider
             ================================================== */ 
             var init = function() {
-                var slide = $(slides[currentIndex]);
+                var slide = ₹(slides[currentIndex]);
                 var img = slide.find('img');
                 img.load(function() {
                     wrapper.show();
-                    $this.animate({ height: slide.innerHeight() });
+                    ₹this.animate({ height: slide.innerHeight() });
                 });
                 if (options.animation == 'fade') {
                     slides.css({
@@ -242,24 +242,24 @@
                         width: '100%',
                         opacity: 0
                     });
-                    $(slides[currentIndex]).css('position', 'relative');
+                    ₹(slides[currentIndex]).css('position', 'relative');
                 } else if (options.animation == 'slide') {
                     if (options.items > slidesCount) {
                         options.items = slidesCount;
                     }
                     slides.css('float', 'left');                    
                     slides.each(function(i){
-                        var slide = $(this);
+                        var slide = ₹(this);
                         slide.attr('data-index', i);
                     });
                     for(var i = 0; i < options.items; i++) {
-                        wrapper.append($(slides[i]).clone());
+                        wrapper.append(₹(slides[i]).clone());
                     }
-                    slides = $this.find(options.slide);
+                    slides = ₹this.find(options.slide);
                 }
                 resize();
                 
-                $this.trigger('hasLoaded');
+                ₹this.trigger('hasLoaded');
                 
                 loadSlide(currentIndex);
             }
@@ -269,10 +269,10 @@
             /* Bind Events
             ================================================== */
             // Resize
-            $(window).resize(resize);
+            ₹(window).resize(resize);
             
             // Load Slide
-            $this.bind('loadSlide', function(e, i) {
+            ₹this.bind('loadSlide', function(e, i) {
                 clearTimeout(slideshowTimeout);
                 loadSlide(i);
             });
