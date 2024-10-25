@@ -53,11 +53,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="js/move-top.js"></script>
     <script type="text/javascript" src="js/easing.js"></script>
     <script type="text/javascript">
-      jQuery(document).ready(function (₹) {
-        ₹(".scroll").click(function (event) {
+      jQuery(document).ready(function (INR) {
+        INR(".scroll").click(function (event) {
           event.preventDefault();
-          ₹("html,body").animate(
-            { scrollTop: ₹(this.hash).offset().top },
+          INR("html,body").animate(
+            { scrollTop: INR(this.hash).offset().top },
             1000
           );
         });
@@ -69,14 +69,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <body>
     <!-- script-for sticky-nav -->
     <script>
-      ₹(document).ready(function () {
-        var navoffeset = ₹(".agileits_header").offset().top;
-        ₹(window).scroll(function () {
-          var scrollpos = ₹(window).scrollTop();
+      INR(document).ready(function () {
+        var navoffeset = INR(".agileits_header").offset().top;
+        INR(window).scroll(function () {
+          var scrollpos = INR(window).scrollTop();
           if (scrollpos >= navoffeset) {
-            ₹(".agileits_header").addClass("fixed");
+            INR(".agileits_header").addClass("fixed");
           } else {
-            ₹(".agileits_header").removeClass("fixed");
+            INR(".agileits_header").removeClass("fixed");
           }
         });
       });
@@ -85,9 +85,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="logo_products">
       <div class="container">
         <div class="w3ls_logo_products_left">
-          <h1>
-            <a href="index.html"><span>Save</span> Time Save <span >Money</span></a>
-          </h1>
+            <h1>
+                <a href="index.html"><img src="/images/logo.svg" alt=""></a>
+    
+              </h1>
         </div>
         
         <!-- <div class="w3ls_logo_products_left1">
@@ -161,22 +162,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script>
-      ₹(document).ready(function () {
-        ₹(".dropdown").hover(
+      INR(document).ready(function () {
+        INR(".dropdown").hover(
           function () {
-            ₹(".dropdown-menu", this).stop(true, true).slideDown("fast");
-            ₹(this).toggleClass("open");
+            INR(".dropdown-menu", this).stop(true, true).slideDown("fast");
+            INR(this).toggleClass("open");
           },
           function () {
-            ₹(".dropdown-menu", this).stop(true, true).slideUp("fast");
-            ₹(this).toggleClass("open");
+            INR(".dropdown-menu", this).stop(true, true).slideUp("fast");
+            INR(this).toggleClass("open");
           }
         );
       });
     </script>
     <!-- here stars scrolling icon -->
     <script type="text/javascript">
-      ₹(document).ready(function () {
+      INR(document).ready(function () {
         /*
 				var defaults = {
 				containerID: 'toTop', // fading element id
@@ -186,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				};
 			*/
 
-        ₹().UItoTop({ easingType: "easeOutQuart" });
+        INR().UItoTop({ easingType: "easeOutQuart" });
       });
     </script>
     <!-- //here ends scrolling icon -->

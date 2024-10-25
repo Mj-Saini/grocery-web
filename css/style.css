@@ -166,9 +166,10 @@ ul.dropdown-menu.drp-mnu li a i {
     text-decoration: none;
     text-transform: uppercase;
     display: block;
-    background: url(../images/img-sp.png) no-repeat 54px 6px;
+    /* background: url(../images/img-sp.png) no-repeat 54px 6px; */
     line-height: 1;
     height: 97px;
+	margin-bottom: 50px;
 }
 .profile_details_drop a {
     display: block;
@@ -633,6 +634,7 @@ ul.dropdown-menu.drp-mnu li a i {
 #PPMiniCart .minicart-footer {
     position: relative;
 	width: 80%;
+		display: none !important;
 }
 /*-- //cart --*/
 .column div.agile_top_brand_left_grid {

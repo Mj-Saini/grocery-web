@@ -9,12 +9,12 @@
  * Contributing author: Tyler Smith (@mbmufffin)
  */
 
-;(function (₹) {
+;(function (INR) {
 
   //FlexSlider: Object Instance
-  ₹.flexslider = function(el, options) {
-    var slider = ₹(el),
-        vars = ₹.extend({}, ₹.flexslider.defaults, options),
+  INR.flexslider = function(el, options) {
+    var slider = INR(el),
+        vars = INR.extend({}, INR.flexslider.defaults, options),
         namespace = vars.namespace,
         touch = ("ontouchstart" in window) || window.DocumentTouch && document instanceof DocumentTouch,
         eventType = (touch) ? "touchend" : "click",
@@ -26,7 +26,7 @@
         methods = {};
     
     // Store a reference to the slider object
-    ₹.data(el, "flexslider", slider);
+    INR.data(el, "flexslider", slider);
     
     // Privat slider methods
     methods = {
@@ -36,11 +36,11 @@
         slider.animatingTo = slider.currentSlide;
         slider.atEnd = (slider.currentSlide === 0 || slider.currentSlide === slider.last);
         slider.containerSelector = vars.selector.substr(0,vars.selector.search(' '));
-        slider.slides = ₹(vars.selector, slider);
-        slider.container = ₹(slider.containerSelector, slider);
+        slider.slides = INR(vars.selector, slider);
+        slider.container = INR(slider.containerSelector, slider);
         slider.count = slider.slides.length;
         // SYNC:
-        slider.syncExists = ₹(vars.sync).length > 0;
+        slider.syncExists = INR(vars.sync).length > 0;
         // SLIDE:
         if (vars.animation === "slide") vars.animation = "swing";
         slider.prop = (vertical) ? "top" : "marginLeft";
@@ -61,9 +61,9 @@
           return false;
         }());
         // CONTROLSCONTAINER:
-        if (vars.controlsContainer !== "") slider.controlsContainer = ₹(vars.controlsContainer).length > 0 && ₹(vars.controlsContainer);
+        if (vars.controlsContainer !== "") slider.controlsContainer = INR(vars.controlsContainer).length > 0 && INR(vars.controlsContainer);
         // MANUAL:
-        if (vars.manualControls !== "") slider.manualControls = ₹(vars.manualControls).length > 0 && ₹(vars.manualControls);
+        if (vars.manualControls !== "") slider.manualControls = INR(vars.manualControls).length > 0 && INR(vars.manualControls);
         
         // RANDOMIZE:
         if (vars.randomize) {
@@ -86,8 +86,8 @@
         if (vars.directionNav) methods.directionNav.setup();
         
         // KEYBOARD:
-        if (vars.keyboard && (₹(slider.containerSelector).length === 1 || vars.multipleKeyboard)) {
-          ₹(document).bind('keyup', function(event) {
+        if (vars.keyboard && (INR(slider.containerSelector).length === 1 || vars.multipleKeyboard)) {
+          INR(document).bind('keyup', function(event) {
             var keycode = event.keyCode;
             if (!slider.animating && (keycode === 39 || keycode === 37)) {
               var target = (keycode === 39) ? slider.getTarget('next') :
@@ -125,7 +125,7 @@
         if (touch && vars.touch) methods.touch();
         
         // FADE&&SMOOTHHEIGHT || SLIDE:
-        if (!fade || (fade && vars.smoothHeight)) ₹(window).bind("resize focus", methods.resize);
+        if (!fade || (fade && vars.smoothHeight)) INR(window).bind("resize focus", methods.resize);
         
         
         // API: start() Callback
@@ -141,9 +141,9 @@
           slider.slides.removeClass(namespace + "active-slide").eq(slider.currentItem).addClass(namespace + "active-slide");
           slider.slides.click(function(e){
             e.preventDefault();
-            var ₹slide = ₹(this),
-                target = ₹slide.index();
-            if (!₹(vars.asNavFor).data('flexslider').animating && !₹slide.hasClass('active')) {
+            var INRslide = INR(this),
+                target = INRslide.index();
+            if (!INR(vars.asNavFor).data('flexslider').animating && !INRslide.hasClass('active')) {
               slider.direction = (slider.currentItem < target) ? "next" : "prev";
               slider.flexAnimate(target, vars.pauseOnAction, false, true, true);
             }
@@ -163,7 +163,7 @@
               j = 1,
               item;
           
-          slider.controlNavScaffold = ₹('<ol class="'+ namespace + 'control-nav ' + namespace + type + '"></ol>');
+          slider.controlNavScaffold = INR('<ol class="'+ namespace + 'control-nav ' + namespace + type + '"></ol>');
           
           if (slider.pagingCount > 1) {
             for (var i = 0; i < slider.pagingCount; i++) {
@@ -174,17 +174,17 @@
           }
           
           // CONTROLSCONTAINER:
-          (slider.controlsContainer) ? ₹(slider.controlsContainer).append(slider.controlNavScaffold) : slider.append(slider.controlNavScaffold);
+          (slider.controlsContainer) ? INR(slider.controlsContainer).append(slider.controlNavScaffold) : slider.append(slider.controlNavScaffold);
           methods.controlNav.set();
           
           methods.controlNav.active();
         
           slider.controlNavScaffold.delegate('a, img', eventType, function(event) {
             event.preventDefault();
-            var ₹this = ₹(this),
-                target = slider.controlNav.index(₹this);
+            var INRthis = INR(this),
+                target = slider.controlNav.index(INRthis);
 
-            if (!₹this.hasClass(namespace + 'active')) {
+            if (!INRthis.hasClass(namespace + 'active')) {
               slider.direction = (target > slider.currentSlide) ? "next" : "prev";
               slider.flexAnimate(target, vars.pauseOnAction);
             }
@@ -202,10 +202,10 @@
           
           slider.controlNav.live(eventType, function(event) {
             event.preventDefault();
-            var ₹this = ₹(this),
-                target = slider.controlNav.index(₹this);
+            var INRthis = INR(this),
+                target = slider.controlNav.index(INRthis);
                 
-            if (!₹this.hasClass(namespace + 'active')) {
+            if (!INRthis.hasClass(namespace + 'active')) {
               (target > slider.currentSlide) ? slider.direction = "next" : slider.direction = "prev";
               slider.flexAnimate(target, vars.pauseOnAction);
             }
@@ -219,14 +219,14 @@
         },
         set: function() {
           var selector = (vars.controlNav === "thumbnails") ? 'img' : 'a';
-          slider.controlNav = ₹('.' + namespace + 'control-nav li ' + selector, (slider.controlsContainer) ? slider.controlsContainer : slider);
+          slider.controlNav = INR('.' + namespace + 'control-nav li ' + selector, (slider.controlsContainer) ? slider.controlsContainer : slider);
         },
         active: function() {
           slider.controlNav.removeClass(namespace + "active").eq(slider.animatingTo).addClass(namespace + "active");
         },
         update: function(action, pos) {
           if (slider.pagingCount > 1 && action === "add") {
-            slider.controlNavScaffold.append(₹('<li><a>' + slider.count + '</a></li>'));
+            slider.controlNavScaffold.append(INR('<li><a>' + slider.count + '</a></li>'));
           } else if (slider.pagingCount === 1) {
             slider.controlNavScaffold.find('li').remove();
           } else {
@@ -238,22 +238,22 @@
       },
       directionNav: {
         setup: function() {
-          var directionNavScaffold = ₹('<ul class="' + namespace + 'direction-nav"><li><a class="' + namespace + 'prev" href="#">' + vars.prevText + '</a></li><li><a class="' + namespace + 'next" href="#">' + vars.nextText + '</a></li></ul>');
+          var directionNavScaffold = INR('<ul class="' + namespace + 'direction-nav"><li><a class="' + namespace + 'prev" href="#">' + vars.prevText + '</a></li><li><a class="' + namespace + 'next" href="#">' + vars.nextText + '</a></li></ul>');
         
           // CONTROLSCONTAINER:
           if (slider.controlsContainer) {
-            ₹(slider.controlsContainer).append(directionNavScaffold);
-            slider.directionNav = ₹('.' + namespace + 'direction-nav li a', slider.controlsContainer);
+            INR(slider.controlsContainer).append(directionNavScaffold);
+            slider.directionNav = INR('.' + namespace + 'direction-nav li a', slider.controlsContainer);
           } else {
             slider.append(directionNavScaffold);
-            slider.directionNav = ₹('.' + namespace + 'direction-nav li a', slider);
+            slider.directionNav = INR('.' + namespace + 'direction-nav li a', slider);
           }
         
           methods.directionNav.update();
         
           slider.directionNav.bind(eventType, function(event) {
             event.preventDefault();
-            var target = (₹(this).hasClass(namespace + 'next')) ? slider.getTarget('next') : slider.getTarget('prev');
+            var target = (INR(this).hasClass(namespace + 'next')) ? slider.getTarget('next') : slider.getTarget('prev');
             slider.flexAnimate(target, vars.pauseOnAction);
           });
           // Prevent iOS click event bug
@@ -282,22 +282,22 @@
       },
       pausePlay: {
         setup: function() {
-          var pausePlayScaffold = ₹('<div class="' + namespace + 'pauseplay"><a></a></div>');
+          var pausePlayScaffold = INR('<div class="' + namespace + 'pauseplay"><a></a></div>');
         
           // CONTROLSCONTAINER:
           if (slider.controlsContainer) {
             slider.controlsContainer.append(pausePlayScaffold);
-            slider.pausePlay = ₹('.' + namespace + 'pauseplay a', slider.controlsContainer);
+            slider.pausePlay = INR('.' + namespace + 'pauseplay a', slider.controlsContainer);
           } else {
             slider.append(pausePlayScaffold);
-            slider.pausePlay = ₹('.' + namespace + 'pauseplay a', slider);
+            slider.pausePlay = INR('.' + namespace + 'pauseplay a', slider);
           }
 
           methods.pausePlay.update((vars.slideshow) ? namespace + 'pause' : namespace + 'play');
 
           slider.pausePlay.bind(eventType, function(event) {
             event.preventDefault();
-            if (₹(this).hasClass(namespace + 'pause')) {
+            if (INR(this).hasClass(namespace + 'pause')) {
               slider.manualPause = true;
               slider.manualPlay = false;
               slider.pause();
@@ -411,18 +411,18 @@
       },
       smoothHeight: function(dur) {
         if (!vertical || fade) {
-          var ₹obj = (fade) ? slider : slider.viewport;
-          (dur) ? ₹obj.animate({"height": slider.slides.eq(slider.animatingTo).height()}, dur) : ₹obj.height(slider.slides.eq(slider.animatingTo).height());
+          var INRobj = (fade) ? slider : slider.viewport;
+          (dur) ? INRobj.animate({"height": slider.slides.eq(slider.animatingTo).height()}, dur) : INRobj.height(slider.slides.eq(slider.animatingTo).height());
         }
       },
       sync: function(action) {
-        var ₹obj = ₹(vars.sync).data("flexslider"),
+        var INRobj = INR(vars.sync).data("flexslider"),
             target = slider.animatingTo;
         
         switch (action) {
-          case "animate": ₹obj.flexAnimate(target, vars.pauseOnAction, false, true); break;
-          case "play": if (!₹obj.playing && !₹obj.asNav) { ₹obj.play(); } break;
-          case "pause": ₹obj.pause(); break;
+          case "animate": INRobj.flexAnimate(target, vars.pauseOnAction, false, true); break;
+          case "play": if (!INRobj.playing && !INRobj.asNav) { INRobj.play(); } break;
+          case "pause": INRobj.pause(); break;
         }
       }
     }
@@ -433,7 +433,7 @@
       
       if (!slider.animating && (slider.canAdvance(target, fromNav) || override) && slider.is(":visible")) {
         if (asNav && withSync) {
-          var master = ₹(vars.asNavFor).data('flexslider');
+          var master = INR(vars.asNavFor).data('flexslider');
           slider.atEnd = target === 0 || target === slider.count - 1;
           master.flexAnimate(target, true, false, true, fromNav);
           slider.direction = (slider.currentItem < target) ? "next" : "prev";
@@ -633,14 +633,14 @@
         var sliderOffset, arr;
             
         if (type === "init") {
-          slider.viewport = ₹('<div class="' + namespace + 'viewport"></div>').css({"overflow": "hidden", "position": "relative"}).appendTo(slider).append(slider.container);
+          slider.viewport = INR('<div class="' + namespace + 'viewport"></div>').css({"overflow": "hidden", "position": "relative"}).appendTo(slider).append(slider.container);
           // INFINITE LOOP:
           slider.cloneCount = 0;
           slider.cloneOffset = 0;
           // REVERSE:
           if (reverse) {
-            arr = ₹.makeArray(slider.slides).reverse();
-            slider.slides = ₹(arr);
+            arr = INR.makeArray(slider.slides).reverse();
+            slider.slides = INR(arr);
             slider.container.empty().append(slider.slides);
           }
         }
@@ -652,7 +652,7 @@
           if (type !== "init") slider.container.find('.clone').remove();
           slider.container.append(slider.slides.first().clone().addClass('clone')).prepend(slider.slides.last().clone().addClass('clone'));
         }
-        slider.newSlides = ₹(vars.selector, slider);
+        slider.newSlides = INR(vars.selector, slider);
         
         sliderOffset = (reverse) ? slider.count - 1 - slider.currentSlide + slider.cloneOffset : slider.currentSlide + slider.cloneOffset;
         // VERTICAL:
@@ -754,23 +754,23 @@
     }
     
     slider.addSlide = function(obj, pos) {
-      var ₹obj = ₹(obj);
+      var INRobj = INR(obj);
       
       slider.count += 1;
       slider.last = slider.count - 1;
       
       // append new slide
       if (vertical && reverse) {
-        (pos !== undefined) ? slider.slides.eq(slider.count - pos).after(₹obj) : slider.container.prepend(₹obj);
+        (pos !== undefined) ? slider.slides.eq(slider.count - pos).after(INRobj) : slider.container.prepend(INRobj);
       } else {
-        (pos !== undefined) ? slider.slides.eq(pos).before(₹obj) : slider.container.append(₹obj);
+        (pos !== undefined) ? slider.slides.eq(pos).before(INRobj) : slider.container.append(INRobj);
       }
       
       // update currentSlide, animatingTo, controlNav, and directionNav
       slider.update(pos, "add");
       
       // update slider.slides
-      slider.slides = ₹(vars.selector + ':not(.clone)', slider);
+      slider.slides = INR(vars.selector + ':not(.clone)', slider);
       // re-setup the slider to accomdate new slide
       slider.setup();
       
@@ -778,7 +778,7 @@
       vars.added(slider);
     }
     slider.removeSlide = function(obj) {
-      var pos = (isNaN(obj)) ? slider.slides.index(₹(obj)) : obj;
+      var pos = (isNaN(obj)) ? slider.slides.index(INR(obj)) : obj;
       
       // update count
       slider.count -= 1;
@@ -786,7 +786,7 @@
       
       // remove slide
       if (isNaN(obj)) {
-        ₹(obj, slider.slides).remove();
+        INR(obj, slider.slides).remove();
       } else {
         (vertical && reverse) ? slider.slides.eq(slider.last).remove() : slider.slides.eq(obj).remove();
       }
@@ -796,7 +796,7 @@
       slider.update(pos, "remove");
       
       // update slider.slides
-      slider.slides = ₹(vars.selector + ':not(.clone)', slider);
+      slider.slides = INR(vars.selector + ':not(.clone)', slider);
       // re-setup the slider to accomdate new slide
       slider.setup();
       
@@ -809,7 +809,7 @@
   }
   
   //FlexSlider: Default Settings
-  ₹.flexslider.defaults = {
+  INR.flexslider.defaults = {
     namespace: "flex-",             //{NEW} String: Prefix string attached to the class of every element generated by the plugin
     selector: ".slides > li",       //{NEW} Selector: Must match a simple pattern. '{container} > {slide}' -- Ignore pattern at your own peril
     animation: "fade",              //String: Select your animation type, "fade" or "slide"
@@ -847,8 +847,8 @@
     playText: "Play",               //String: Set the text for the "play" pausePlay item
     
     // Special properties
-    controlsContainer: "",          //{UPDATED} jQuery Object/Selector: Declare which container the navigation elements should be appended too. Default container is the FlexSlider element. Example use would be ₹(".flexslider-container"). Property is ignored if given element is not found.
-    manualControls: "",             //{UPDATED} jQuery Object/Selector: Declare custom control navigation. Examples would be ₹(".flex-control-nav li") or "#tabs-nav li img", etc. The number of elements in your controlNav should match the number of slides/tabs.
+    controlsContainer: "",          //{UPDATED} jQuery Object/Selector: Declare which container the navigation elements should be appended too. Default container is the FlexSlider element. Example use would be INR(".flexslider-container"). Property is ignored if given element is not found.
+    manualControls: "",             //{UPDATED} jQuery Object/Selector: Declare custom control navigation. Examples would be INR(".flex-control-nav li") or "#tabs-nav li img", etc. The number of elements in your controlNav should match the number of slides/tabs.
     sync: "",                       //{NEW} Selector: Mirror the actions performed on this slider with another slider. Use with care.
     asNavFor: "",                   //{NEW} Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider
     
@@ -870,32 +870,32 @@
 
 
   //FlexSlider: Plugin Function
-  ₹.fn.flexslider = function(options) {
+  INR.fn.flexslider = function(options) {
     if (options === undefined) options = {};
     
     if (typeof options === "object") {
       return this.each(function() {
-        var ₹this = ₹(this),
+        var INRthis = INR(this),
             selector = (options.selector) ? options.selector : ".slides > li",
-            ₹slides = ₹this.find(selector);
+            INRslides = INRthis.find(selector);
 
-        if (₹slides.length === 1) {
-          ₹slides.fadeIn(400);
-          if (options.start) options.start(₹this);
-        } else if (₹this.data('flexslider') == undefined) {
-          new ₹.flexslider(this, options);
+        if (INRslides.length === 1) {
+          INRslides.fadeIn(400);
+          if (options.start) options.start(INRthis);
+        } else if (INRthis.data('flexslider') == undefined) {
+          new INR.flexslider(this, options);
         }
       });
     } else {
       // Helper strings to quickly perform functions on the slider
-      var ₹slider = ₹(this).data('flexslider');
+      var INRslider = INR(this).data('flexslider');
       switch (options) {
-        case "play": ₹slider.play(); break;
-        case "pause": ₹slider.pause(); break;
-        case "next": ₹slider.flexAnimate(₹slider.getTarget("next"), true); break;
+        case "play": INRslider.play(); break;
+        case "pause": INRslider.pause(); break;
+        case "next": INRslider.flexAnimate(INRslider.getTarget("next"), true); break;
         case "prev":
-        case "previous": ₹slider.flexAnimate(₹slider.getTarget("prev"), true); break;
-        default: if (typeof options === "number") ₹slider.flexAnimate(options, true);
+        case "previous": INRslider.flexAnimate(INRslider.getTarget("prev"), true); break;
+        default: if (typeof options === "number") INRslider.flexAnimate(options, true);
       }
     }
   }  
