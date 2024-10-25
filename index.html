@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
   <head>
-	<title>Save Time Save Moeny</title>
+    <title>Save Time Save Moeny</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -64,6 +64,83 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       });
     </script>
     <!-- start-smoth-scrolling -->
+
+    <style>
+      /* Modal container */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Modal content */
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        width: 400px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Close button */
+      .close {
+        float: right;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #000;
+      }
+
+      .close:hover {
+        color: red;
+      }
+
+      .item-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .item-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .item-list li span {
+        display: block;
+      }
+
+      .remove-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 4px 8px;
+        border-radius: 5px;
+      }
+
+      .remove-btn:hover {
+        background-color: darkred;
+      }
+
+      .quantity-input {
+        width: 40px;
+        text-align: center;
+      }
+
+      .subtotal {
+        margin-top: 20px;
+        font-weight: bold;
+        text-align: right;
+      }
+    </style>
   </head>
 
   <body>
@@ -86,12 +163,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //script-for sticky-nav -->
     <div class="logo_products">
       <div class="container">
-        <div class="w3ls_logo_products_left">
-          <h1>
-			<a href="index.html"><img src="/images/logo.svg" alt=""></a>
-
-          </h1>
-        </div>
+        <div class="w3ls_logo_products_left"></div>
 
         <!-- <div class="w3ls_logo_products_left1">
 			<ul class="phone_email">
@@ -175,15 +247,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="agile_top_brand_left_grid1">
                   <figure>
-                    <div class="snipcart-item block">
-                      <div class="snipcart-thumb">
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                      "
+                      class="snipcart-item block"
+                    >
+                      <div class="snipcart-thumb" style="margin: 0 0 20px 0">
                         <a href="single.html"
                           ><img title=" " alt=" " src="images/1.png"
                         /></a>
                         <p>fortune sunflower oil</p>
                         <h4>INR700.99 <span>INR1000.00</span></h4>
                       </div>
-                      <div class="snipcart-details top_brand_home_details">
+                      <button
+                        id="openModalBtn"
+                        style="
+                          padding: 8px 15px;
+                          margin-top: 20px 0 0 0;
+                          background: red;
+                          color: white;
+                          border: none;
+                        "
+                      >
+                        add to cart
+                      </button>
+                      <!-- <div class="snipcart-details top_brand_home_details">
                         <form action="#" method="post">
                           <fieldset>
                             <input type="hidden" name="cmd" value="_cart" />
@@ -211,15 +302,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                               name="cancel_return"
                               value=" "
                             />
+							<input
+                              type="hidden"
+                              name="notify_url"
+                              value="hhsd "
+                            />
                             <input
                               type="submit"
                               name="submit"
                               value="Add to cart"
                               class="button"
+							  id="openModalBtn"
                             />
                           </fieldset>
                         </form>
-                      </div>
+                      </div> -->
                     </div>
                   </figure>
                 </div>
@@ -231,51 +328,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div class="agile_top_brand_left_grid">
                 <div class="agile_top_brand_left_grid1">
                   <figure>
-                    <div class="snipcart-item block">
-                      <div class="snipcart-thumb">
+                    <div
+                      class="snipcart-item block"
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                      "
+                    >
+                      <div style="margin: 0 0 20px 0" class="snipcart-thumb">
                         <a href="single.html"
                           ><img title=" " alt=" " src="images/3.png"
                         /></a>
                         <p>basmati rise (5 Kg)</p>
                         <h4>INR110.99 <span>INR150.00</span></h4>
                       </div>
-                      <div class="snipcart-details top_brand_home_details">
-                        <form action="#" method="post">
-                          <fieldset>
-                            <input type="hidden" name="cmd" value="_cart" />
-                            <input type="hidden" name="add" value="1" />
-                            <input type="hidden" name="business" value=" " />
-                            <input
-                              type="hidden"
-                              name="item_name"
-                              value="basmati rise"
-                            />
-                            <input type="hidden" name="amount" value="11.99" />
-                            <input
-                              type="hidden"
-                              name="discount_amount"
-                              value=""
-                            />
-                            <input
-                              type="hidden"
-                              name="currency_code"
-                              value=""
-                            />
-                            <input type="hidden" name="return" value=" " />
-                            <input
-                              type="hidden"
-                              name="cancel_return"
-                              value=" "
-                            />
-                            <input
-                              type="submit"
-                              name="submit"
-                              value="Add to cart"
-                              class="button"
-                            />
-                          </fieldset>
-                        </form>
-                      </div>
+                      <button
+					  id="openModalBtn"
+                        style="
+                          padding: 8px 15px;
+                          margin-top: 20px 0 0 0;
+                          background: red;
+                          color: white;
+                          border: none;
+                        "
+                      >
+                        add to cart
+                      </button>
                     </div>
                   </figure>
                 </div>
@@ -290,8 +369,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="agile_top_brand_left_grid1">
                   <figure>
-                    <div class="snipcart-item block">
-                      <div class="snipcart-thumb">
+                    <div
+                      class="snipcart-item block"
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                      "
+                    >
+                      <div style="margin: 0 0 20px 0" class="snipcart-thumb">
                         <a href="single.html"
                           ><img
                             src="images/2.png"
@@ -301,43 +387,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <p>Pepsi soft drink (2 Ltr)</p>
                         <h4>INR80.00 <span>INR100.00</span></h4>
                       </div>
-                      <div class="snipcart-details top_brand_home_details">
-                        <form action="#" method="post">
-                          <fieldset>
-                            <input type="hidden" name="cmd" value="_cart" />
-                            <input type="hidden" name="add" value="1" />
-                            <input type="hidden" name="business" value=" " />
-                            <input
-                              type="hidden"
-                              name="item_name"
-                              value="Pepsi soft drink"
-                            />
-                            <input type="hidden" name="amount" value="8.00" />
-                            <input
-                              type="hidden"
-                              name="discount_amount"
-                              value=""
-                            />
-                            <input
-                              type="hidden"
-                              name="currency_code"
-                              value=""
-                            />
-                            <input type="hidden" name="return" value=" " />
-                            <input
-                              type="hidden"
-                              name="cancel_return"
-                              value=" "
-                            />
-                            <input
-                              type="submit"
-                              name="submit"
-                              value="Add to cart"
-                              class="button"
-                            />
-                          </fieldset>
-                        </form>
-                      </div>
+                      <button
+					  id="openModalBtn"
+                        style="
+                          padding: 8px 15px;
+                          margin-top: 20px 0 0 0;
+                          background: red;
+                          color: white;
+                          border: none;
+                        "
+                      >
+                        add to cart
+                      </button>
                     </div>
                   </figure>
                 </div>
@@ -352,8 +413,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="agile_top_brand_left_grid1">
                   <figure>
-                    <div class="snipcart-item block">
-                      <div class="snipcart-thumb">
+                    <div
+                      class="snipcart-item block"
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                      "
+                    >
+                      <div style="margin: 0 0 20px 0" class="snipcart-thumb">
                         <a href="single.html"
                           ><img
                             src="images/4.png"
@@ -363,43 +431,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <p>dogs food (4 Kg)</p>
                         <h4>INR90.00 <span>INR110.00</span></h4>
                       </div>
-                      <div class="snipcart-details top_brand_home_details">
-                        <form action="#" method="post">
-                          <fieldset>
-                            <input type="hidden" name="cmd" value="_cart" />
-                            <input type="hidden" name="add" value="1" />
-                            <input type="hidden" name="business" value=" " />
-                            <input
-                              type="hidden"
-                              name="item_name"
-                              value="dogs food"
-                            />
-                            <input type="hidden" name="amount" value="9.00" />
-                            <input
-                              type="hidden"
-                              name="discount_amount"
-                              value=""
-                            />
-                            <input
-                              type="hidden"
-                              name="currency_code"
-                              value=""
-                            />
-                            <input type="hidden" name="return" value=" " />
-                            <input
-                              type="hidden"
-                              name="cancel_return"
-                              value=" "
-                            />
-                            <input
-                              type="submit"
-                              name="submit"
-                              value="Add to cart"
-                              class="button"
-                            />
-                          </fieldset>
-                        </form>
-                      </div>
+                      <button
+					  id="openModalBtn"
+                        style="
+                          padding: 8px 15px;
+                          margin-top: 20px 0 0 0;
+                          background: red;
+                          color: white;
+                          border: none;
+                        "
+                      >
+                        add to cart
+                      </button>
                     </div>
                   </figure>
                 </div>
@@ -407,6 +450,65 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
           </div>
           <div class="clearfix"></div>
+        </div>
+
+        <div id="cartModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <ul class="item-list">
+              <li>
+                <div>
+                  <span>Basmati Rise</span>
+                  <span>Discount: INR24.00</span>
+                </div>
+                <input type="number" value="24" class="quantity-input" />
+                <button class="remove-btn">✖</button>
+                <span>INR263.76</span>
+              </li>
+              <li>
+                <div>
+                  <span>Dogs Food</span>
+                  <span>Discount: INR6.00</span>
+                </div>
+                <input type="number" value="6" class="quantity-input" />
+                <button class="remove-btn">✖</button>
+                <span>INR48.00</span>
+              </li>
+              <li>
+                <div>
+                  <span>Pepsi Soft Drink</span>
+                  <span>Discount: INR10.00</span>
+                </div>
+                <input type="number" value="10" class="quantity-input" />
+                <button class="remove-btn">✖</button>
+                <span>INR70.00</span>
+              </li>
+              <li>
+                <div>
+                  <span>Fortune Sunflower Oil</span>
+                  <span>Discount: INR17.00</span>
+                </div>
+                <input type="number" value="17" class="quantity-input" />
+                <button class="remove-btn">✖</button>
+                <span>INR135.83</span>
+              </li>
+            </ul>
+            <div style="display: flex ; align-items: center ; justify-content: space-between; margin-top: 20px;">
+              <div class="subtotal">Subtotal: INR517.59</div>
+              <button
+                style="
+                  padding: 8px 15px;
+                  margin-top: 20px 0 0 0;
+                  background: red;
+                  color: white;
+                  border: none;
+                "
+              >
+                buy now
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -547,6 +649,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       if (~window.location.search.indexOf("reset=true")) {
         paypal.minicart.reset();
       }
+    </script>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("cartModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("openModalBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementById("closeModalBtn");
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function () {
+        modal.style.display = "flex";
+      };
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
     </script>
   </body>
 </html>

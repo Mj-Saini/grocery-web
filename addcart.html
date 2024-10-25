@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart Pop-up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+   
+
+  </style>
+</head>
+<body>
+
+<!-- Button to open the modal -->
+<button id="openModalBtn">Open Cart</button>
+
+<!-- The Modal -->
+<div id="cartModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" id="closeModalBtn">&times;</span>
+    <ul class="item-list">
+      <li>
+        <div>
+          <span>Basmati Rise</span>
+          <span>Discount: INR24.00</span>
+        </div>
+        <input type="number" value="24" class="quantity-input">
+        <button class="remove-btn">✖</button>
+        <span>INR263.76</span>
+      </li>
+      <li>
+        <div>
+          <span>Dogs Food</span>
+          <span>Discount: INR6.00</span>
+        </div>
+        <input type="number" value="6" class="quantity-input">
+        <button class="remove-btn">✖</button>
+        <span>INR48.00</span>
+      </li>
+      <li>
+        <div>
+          <span>Pepsi Soft Drink</span>
+          <span>Discount: INR10.00</span>
+        </div>
+        <input type="number" value="10" class="quantity-input">
+        <button class="remove-btn">✖</button>
+        <span>INR70.00</span>
+      </li>
+      <li>
+        <div>
+          <span>Fortune Sunflower Oil</span>
+          <span>Discount: INR17.00</span>
+        </div>
+        <input type="number" value="17" class="quantity-input">
+        <button class="remove-btn">✖</button>
+        <span>INR135.83</span>
+      </li>
+    </ul>
+    <div class="subtotal">Subtotal: INR517.59 USD</div>
+  </div>
+
+</div>
+
+
+</body>
+</html>

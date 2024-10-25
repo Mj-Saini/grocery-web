@@ -634,7 +634,7 @@ ul.dropdown-menu.drp-mnu li a i {
 #PPMiniCart .minicart-footer {
     position: relative;
 	width: 80%;
-		display: none !important;
+		/* display: none !important; */
 }
 /*-- //cart --*/
 .column div.agile_top_brand_left_grid {
